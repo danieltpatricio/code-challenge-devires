@@ -61,3 +61,5 @@ Já vem com as rotas `/example` e `/todos`.
 ### `yarn api:server`
 
 ### `yarn lint:fix`
+
+# 🚀
