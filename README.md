@@ -32,6 +32,7 @@ O foco do code challenge é conhecer melhor sua **criatividade, organização, c
 - deixar erros do eslint
 - códigos comentados
 - console logs
+- fazer apenas 1 commit com todo código
 - abrir PR de volta sem usar o eslint (`yarn lint:fix`)
 
 ## ➕ Mais Informações
@@ -43,9 +44,9 @@ O sistema só precisa adicionar e deletar itens da lista de Todo, ter uma interf
 
 ### API:
 
-Você pode usar a do `json-server` que já está configurada, basta rodar o comando `yarn api:server` que abrirá um servidor no endereço que está configurado no `.env`.  
-Já vem com as rotas `/example` e `/todos`.  
-[**Mais informações sobre `json server`** 🌐](https://github.com/typicode/json-server#json-server--)  
+Você pode usar a do `json-server` que já está configurada, basta rodar o comando `yarn api:server` que abrirá um servidor no endereço que está configurado no `.env`.
+Já vem com as rotas `/example` e `/todos`.
+[**Mais informações sobre `json server`** 🌐](https://github.com/typicode/json-server#json-server--)
 
 ## 🍀 Dicas
 
@@ -53,6 +54,7 @@ Já vem com as rotas `/example` e `/todos`.
 - Seguir padrões conhecidos pela comunidade é uma boa idéia.
 - Lógicas extensas no JSX ou Nested-ternaries em excesso podem piorar bastante a legibilidade do seu código.
 - Código em outra lingua que não seja ingles são fora do padrão de mercado e da comunidade (variaveis, funções, etc... só textos que não precisam estar em inglês)
+- Commits pequenos, descritivos e organizados mostram um pouco de como é sua linha de raciocínio e organização
 
 ## 👨‍💻 Scripts prontos
 
