@@ -45,7 +45,8 @@ O sistema só precisa adicionar e deletar itens da lista de Todo, ter uma interf
 ### API:
 
 Você pode usar a do `json-server` que já está configurada, basta rodar o comando `yarn api:server` que abrirá um servidor no endereço que está configurado no `.env`.
-Já vem com as rotas `/example` e `/todos`.
+Já vem com as rotas `/example` e `/todos`.  
+
 [**Mais informações sobre `json server`** 🌐](https://github.com/typicode/json-server#json-server--)
 
 ## 🍀 Dicas
