@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-import { Container } from './styles';
+import { StyledHeading } from './styles';
 
 interface IProps {
   title: string;
@@ -8,11 +8,7 @@ interface IProps {
 
 function AppBar(props: IProps) {
   const { title } = props;
-  return (
-    <Container>
-      <h3>{title}</h3>
-    </Container>
-  );
+  return <StyledHeading>{title}</StyledHeading>;
 }
 
-export default AppBar;
+export default memo<IProps>(AppBar);

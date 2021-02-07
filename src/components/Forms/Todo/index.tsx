@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ITodo } from 'models/todos';
-import TextField from 'components/Fields/Text';
+import Input from 'components/Fields/Input';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { saveTodo } from 'store/ducks/todos';
 import { useDispatch } from 'react-redux';
 import Yup from 'helper/yup';
+import TextArea from 'components/Fields/TextArea';
+import { useToast } from '@chakra-ui/react';
+
+interface IProps {
+  formId: string;
+  onClose: () => void;
+}
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required(),
   description: Yup.string().required(),
 });
 
-function TodoForm() {
-  const apiTodo = saveTodo();
+function TodoForm(props: IProps) {
+  const { formId, onClose } = props;
+  const toast = useToast();
   const dispatch = useDispatch();
 
-  const handleSubmit = (values: ITodo, formikHelpers: FormikHelpers<ITodo>) => {
-    console.log(values);
-    apiTodo(dispatch, values);
+  const handleSubmit = async (
+    values: ITodo,
+    formikHelpers: FormikHelpers<ITodo>
+  ) => {
+    const apiTodo = saveTodo(values);
+    await apiTodo(dispatch);
     formikHelpers.setSubmitting(false);
+    onClose();
+    toast({
+      title: 'Tarefa adicionado com sucesso',
+      description: 'A sua nova tarefa foi adiconado à lista de coisas a fazer!',
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -27,13 +46,12 @@ function TodoForm() {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form>
-        <TextField name="title" label="Titulo" />
-        <TextField name="description" label="Descrição" />
-        <button type="submit">Enviar</button>
+      <Form id={formId}>
+        <Input name="title" label="Titulo" />
+        <TextArea name="description" label="Descrição" />
       </Form>
     </Formik>
   );
 }
 
-export default TodoForm;
+export default memo<IProps>(TodoForm);

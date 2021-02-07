@@ -1,11 +1,13 @@
 import styled, { DefaultTheme, ThemedStyledProps } from 'styled-components';
+import { Heading, HeadingProps } from '@chakra-ui/react';
 
-type Props = ThemedStyledProps<unknown, DefaultTheme>;
+type Props = ThemedStyledProps<HeadingProps, DefaultTheme>;
 
-export const Container = styled.div`
+export const StyledHeading = styled(Heading)`
   color: ${(props: Props) => props.theme.colors.primary};
   display: flex;
   justify-content: center;
+  align-content: center;
   min-height: 56px;
   @media (min-width: 0px) and (orientation: landscape) : {
     min-height: 48px;
@@ -14,4 +16,3 @@ export const Container = styled.div`
     min-height: 64px;
   }
 `;
-// height: ${(props: Props)=> props.theme.mixins.toolbar}

@@ -1,45 +1,49 @@
 import AppBar from 'components/AppBar';
 import Container from 'components/Container';
-import React, { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { deleteTodo, getTodo } from 'store/ducks/todos';
-import { DefaultState } from 'models/redux';
-import { ITodo } from 'models/todos';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getTodo } from 'store/ducks/todos';
 import TodoForm from 'components/Forms/Todo';
+import ListTodos from 'components/ListTodos';
+import Modal from 'components/Modal';
+import { Button, Center, useDisclosure } from '@chakra-ui/react';
+import AddIcon from 'mdi-react/AddIcon';
 
 function App() {
   const dispatch = useDispatch();
-  const todos = useSelector<RootState, DefaultState<ITodo[]>>(
-    (store) => store.todoReducer
-  );
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const findTodo = getTodo();
     findTodo(dispatch);
   }, [dispatch]);
 
-  const handleDelete = useCallback(
-    (id: number) => () => {
-      const removeTodo = deleteTodo();
-      removeTodo(dispatch, id);
-    },
-    [dispatch]
-  );
-
   return (
-    <Container>
-      <AppBar title="To Do - List" />
-      <ul>
-        {todos.data?.map((t) => (
-          <div key={`li-todos-${t.id}`}>
-            <li key={`li-todos-${t.id}`}>{t.title}</li>
-            {t.id && <button onClick={handleDelete(t.id)}>X</button>}
-          </div>
-        ))}
-      </ul>
-      <TodoForm />
-    </Container>
+    <>
+      <Modal
+        title="Adicionar"
+        action="Adicionar"
+        isOpen={isOpen}
+        onClose={onClose}
+        submitForm="form-add-todo"
+      >
+        <TodoForm formId="form-add-todo" onClose={onClose} />
+      </Modal>
+      <Container display="grid" gridGap="10px" maxWidth="lg">
+        <AppBar title="Challenge To-Do" />
+        <ListTodos />
+        <Center>
+          <Button
+            leftIcon={<AddIcon />}
+            onClick={onOpen}
+            colorScheme="teal"
+            variant="outline"
+          >
+            Adicionar
+          </Button>
+        </Center>
+      </Container>
+    </>
   );
 }
 

@@ -38,12 +38,12 @@ export const getTodo = () => async (dispatch: Dispatch) => {
   dispatch(setTodos(data));
 };
 
-export const saveTodo = () => async (dispatch: Dispatch, todo: ITodo) => {
+export const saveTodo = (todo: ITodo) => async (dispatch: Dispatch) => {
   const { data } = await api.post<ITodo>('/todos', todo);
   dispatch(addTodo(data));
 };
 
-export const deleteTodo = () => async (dispatch: Dispatch, id: number) => {
+export const deleteTodo = (id: number) => async (dispatch: Dispatch) => {
   await api.delete<ITodo>(`/todos/${id}`);
   dispatch(removeTodo(id));
 };
