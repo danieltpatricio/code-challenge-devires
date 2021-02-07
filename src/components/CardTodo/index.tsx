@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { ITodo } from 'models/todos';
-import { Text } from '@chakra-ui/react';
+import { Text, useToast } from '@chakra-ui/react';
 import { StyledContainer, StyledHeader } from './styles';
 import { useDispatch } from 'react-redux';
 import { deleteTodo } from 'store/ducks/todos';
@@ -13,14 +13,22 @@ interface IProps {
 function CardTodo(props: IProps) {
   const { todo } = props;
   const dispatch = useDispatch();
+  const toast = useToast();
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = useCallback(async () => {
     if (todo.id) {
       const removeTodo = deleteTodo(todo.id);
-      removeTodo(dispatch);
+      await removeTodo(dispatch);
+      toast({
+        title: 'Tarefa removida com sucesso',
+        description: `A tarefa "${todo.title}" foi removida da lista!`,
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      });
     }
-  }, [dispatch, todo.id]);
+  }, [dispatch, toast, todo.id, todo.title]);
 
   const handleConfirmDelete = () => {
     setConfirmDelete((c) => !c);

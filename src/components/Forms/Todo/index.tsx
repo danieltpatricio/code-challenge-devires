@@ -33,7 +33,7 @@ function TodoForm(props: IProps) {
     onClose();
     toast({
       title: 'Tarefa adicionado com sucesso',
-      description: 'A sua nova tarefa foi adiconado à lista de coisas a fazer!',
+      description: 'A sua nova tarefa foi adiconado à lista!',
       status: 'success',
       duration: 9000,
       isClosable: true,

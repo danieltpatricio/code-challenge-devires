@@ -19,11 +19,13 @@ function ButtonDelete(props: IProps) {
         <Text>Tem certeza de que deseja excluir?</Text>
         <ButtonGroup justifyContent="center" size="sm">
           <IconButton
+            size="sm"
             aria-label="remover tarefa"
             icon={<CloseIcon />}
             onClick={onConfirmDelete}
           />
           <IconButton
+            size="sm"
             aria-label="remover tarefa"
             icon={<CheckIcon />}
             onClick={onDelete}
