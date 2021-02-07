@@ -23,7 +23,7 @@ function CardTodo(props: IProps) {
   }, [dispatch, todo.id]);
 
   const handleConfirmDelete = () => {
-    setConfirmDelete(c => !c);
+    setConfirmDelete((c) => !c);
   };
 
   return (
